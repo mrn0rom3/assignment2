@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================
+     S2.xml  =  Part 3 data file
+     ============================================================
+     DEMO NOTES (be ready to explain):
+     * This file holds the SAME data as A2.json, just expressed in
+       XML instead of JSON. Each JSON object becomes one <weather>
+       element; each key/value pair becomes a child element.
+     * Line 1 is the XML DECLARATION. "version" is the XML spec
+       version; "encoding=UTF-8" tells the parser how the bytes map
+       to characters (lets us store any text safely).
+     * There is exactly ONE root element (<forecast>). XML requires
+       a single root - two top-level elements would be "not
+       well-formed" and the parser would reject the file.
+     * "queryTime" is an ATTRIBUTE on the root (data about the whole
+       document). The actual forecasts are child ELEMENTS. Rule of
+       thumb we followed: repeating structured data -> elements;
+       single piece of metadata -> attribute.
+     * This file is validated by S2.xsd (the schema). S2.xsd is what
+       enforces the value ranges (year 2000-2030, month 1-12, etc.).
+     ============================================================ -->
+<forecast queryTime="13/10/2026 10:52:00">
+
+    <!-- Each <weather> = one forecast record = one object in A2.json.
+         The child elements appear in the exact order the XSD's
+         <xs:sequence> demands - reordering them would fail validation. -->
+    <weather>
+        <year>2026</year>               <!-- 2000-2030 (restricted in XSD) -->
+        <month>2</month>                <!-- 1-12 (restricted in XSD) -->
+        <date>22</date>                 <!-- 1-31 (restricted in XSD) -->
+        <dayOfWeek>Sun</dayOfWeek>      <!-- must be Mon..Sun (enum in XSD) -->
+        <overall>Considerable clouds 20</overall>  <!-- description text shown in cell -->
+        <overallCode>cloudy</overallCode>          <!-- drives image + colour in S2.html -->
+        <highest>34</highest>           <!-- top temperature -->
+        <lowest>30</lowest>             <!-- bottom temperature -->
+    </weather>
+
+    <weather>
+        <year>2026</year>
+        <month>6</month>
+        <date>15</date>
+        <dayOfWeek>Mon</dayOfWeek>
+        <overall>Cloudy with a thunderstorm 26</overall>
+        <overallCode>thunderstorm</overallCode>
+        <highest>30</highest>
+        <lowest>25</lowest>
+    </weather>
+
+    <weather>
+        <year>2026</year>
+        <month>4</month>
+        <date>14</date>
+        <dayOfWeek>Tue</dayOfWeek>
+        <overall>Afternoon shower 10</overall>
+        <overallCode>rain</overallCode>
+        <highest>36</highest>
+        <lowest>31</lowest>
+    </weather>
+
+    <weather>
+        <year>2026</year>
+        <month>7</month>
+        <date>9</date>
+        <dayOfWeek>Thu</dayOfWeek>
+        <overall>A morning shower, then rain 13</overall>
+        <overallCode>rain</overallCode>
+        <highest>34</highest>
+        <lowest>29</lowest>
+    </weather>
+
+    <weather>
+        <year>2026</year>
+        <month>5</month>
+        <date>9</date>
+        <dayOfWeek>Sat</dayOfWeek>
+        <overall>Partly sunny</overall>
+        <overallCode>partlySunny</overallCode>  <!-- note camelCase: must match image file partlySunny.jpeg -->
+        <highest>34</highest>
+        <lowest>30</lowest>
+    </weather>
+
+    <weather>
+        <year>2026</year>
+        <month>5</month>
+        <date>18</date>
+        <dayOfWeek>Mon</dayOfWeek>
+        <overall>Plenty of sunshine 2026</overall>
+        <overallCode>sunny</overallCode>
+        <highest>35</highest>
+        <lowest>32</lowest>
+    </weather>
+
+</forecast>

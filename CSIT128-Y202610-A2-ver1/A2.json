@@ -1,0 +1,65 @@
+{
+  "queryTime": "13/10/2026 10:52:00",
+  "weather": [
+    {
+      "year": "2026",
+	  "month": "2",
+	  "date": "22",
+	  "dayOfWeek": "Sun",
+	  "overall": "Considerable clouds 20",
+	  "overallCode": "cloudy",
+      "highest": "34",
+      "lowest": "30"
+    },
+    {
+      "year": "2026",
+	  "month": "6",
+	  "date": "15",
+	  "dayOfWeek": "Mon",
+	  "overall": "Cloudy with a thunderstorm 26",
+	  "overallCode": "thunderstorm",
+      "highest": "30",
+      "lowest": "25"
+    },
+    {
+      "year": "2026",
+	  "month": "4",
+	  "date": "14",
+	  "dayOfWeek": "Tue",
+	  "overall": "Afternoon shower 10",
+	  "overallCode": "rain",
+      "highest": "36",
+      "lowest": "31"
+    },
+    {
+      "year": "2026",
+	  "month": "7",
+	  "date": "9",
+	  "dayOfWeek": "Thu",
+	  "overall": "A morning shower, then rain 13",
+	  "overallCode": "rain",
+      "highest": "34",
+      "lowest": "29"
+    },
+    {
+      "year": "2026",
+	  "month": "5",
+	  "date": "9",
+	  "dayOfWeek": "Sat",
+	  "overall": "Partly sunny",
+	  "overallCode": "partlySunny",
+      "highest": "34",
+      "lowest": "30"
+    },
+    {
+      "year": "2026",
+	  "month": "5",
+	  "date": "18",
+	  "dayOfWeek": "Mon",
+	  "overall": "Plenty of sunshine 2026",
+	  "overallCode": "sunny",
+      "highest": "35",
+      "lowest": "32"
+    }
+  ]
+}

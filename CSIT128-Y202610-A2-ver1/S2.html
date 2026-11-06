@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     S2.html  -  Part 3 display page (Ajax + XML)
+     ------------------------------------------------------------
+     DEMO NOTES - THE BIG PICTURE (be ready to explain):
+     1. The page loads with an EMPTY table (just the header row).
+     2. When the page finishes loading, JavaScript sends an Ajax
+        request for S2.xml (this is the "Ajax-JSON example" style
+        from class, but reading XML instead of JSON).
+     3. The XML comes back parsed as a DOM document. We read each
+        <weather> node, sort the records, and build one table row
+        per forecast, filling cells with temperature, image and text.
+     "Ajax" = Asynchronous JavaScript And XML: we fetch data in the
+     background without reloading the page.
+     ============================================================ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 - Weather Forecast</title>
+</head>
+<body>
+    <!-- Title: starts as plain "Singapore"; JavaScript appends the
+         queryTime read from the XML so it becomes e.g.
+         "Singapore [13/10/2026 10:52:00]". If the XML failed to load,
+         the plain title still shows - a small defensive fallback. -->
+    <h2 id="forecastTitle" style="text-align: center;">Singapore</h2>
+
+    <!-- ========================================================
+         SKELETON TABLE
+         Only the header row is hard-coded here. The brief's layout
+         rules are applied up front:
+           * background: yellow + font-weight: bold on the header row
+             (requirement: first row is yellow and bold)
+           * text-align: center on the whole table
+             (requirement: all cell contents centralised)
+           * border-collapse so the 1px borders look like one grid.
+         The <tbody> is left empty on purpose - JS fills it so the
+         data lives in ONE place (S2.xml), not duplicated in HTML.
+         ======================================================== -->
+    <table id="forecastTable"
+           style="border-collapse: collapse; margin: auto; width: 100%; text-align: center;">
+        <thead>
+            <tr style="background: yellow; font-weight: bold;">
+                <th style="border: 1px solid; padding: 6px;">Date</th>
+                <th style="border: 1px solid; padding: 6px;">Mon</th>
+                <th style="border: 1px solid; padding: 6px;">Tue</th>
+                <th style="border: 1px solid; padding: 6px;">Wed</th>
+                <th style="border: 1px solid; padding: 6px;">Thu</th>
+                <th style="border: 1px solid; padding: 6px;">Fri</th>
+                <th style="border: 1px solid; padding: 6px;">Sat</th>
+                <th style="border: 1px solid; padding: 6px;">Sun</th>
+            </tr>
+        </thead>
+        <!-- One row per forecast, built by JS in descending date order -->
+        <tbody id="forecastBody"></tbody>
+    </table>
+
+    <!-- Part 3 logic (external, relative link) -->
+    <script src="js/S2.js"></script>
+</body>
+</html>

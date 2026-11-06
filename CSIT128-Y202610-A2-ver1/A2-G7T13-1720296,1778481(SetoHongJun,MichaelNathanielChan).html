@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2-G7T13-1720296,1778481(SetoHongJun,MichaelNathanielChan)</title>
+</head>
+<body>
+    <!-- ========================================================
+       PART 1: STUDENT & GROUP INFORMATION TABLE
+       ======================================================== -->
+    <h1>Part 1: Student &amp; Group Information Table</h1>
+    <table style="border: 1px solid; font-size: large; width: 50%;">
+        <!-- Header row: title spans the first 3 columns, group name in the last -->
+        <tr>
+            <th colspan="3" style="border: 1px solid; background: #deeaf6; padding: 8px 12px;">CSIT128: Assignment 2</th>
+            <th style="border: 1px solid; background: #deeaf6; padding: 8px 12px;">Group G7T13</th>
+        </tr>
+        <!-- Label cell uses rowspan 2 to cover the 2 group members -->
+        <tr>
+            <td rowspan="2" style="border: 1px solid; padding: 8px 12px;"><b>Student Number /<br>Name / Email</b></td>
+            <!-- Member 1 -->
+            <td style="border: 1px solid; padding: 8px 12px;">1720296</td>
+            <td style="border: 1px solid; padding: 8px 12px;">Seto Hong Jun</td>
+            <td style="border: 1px solid; padding: 8px 12px;">hjs893@uowmail.edu.au</td>
+        </tr>
+        <tr>
+            <!-- Member 2 -->
+            <td style="border: 1px solid; padding: 8px 12px;">1778481</td>
+            <td style="border: 1px solid; padding: 8px 12px;">Michael Nathaniel Chan</td>
+            <td style="border: 1px solid; padding: 8px 12px;">mnchan002@uowmail.edu.au</td>
+        </tr>
+    </table><br>
+
+    <!-- ========================================================
+       PART 2: Game
+       ======================================================== -->
+    <table style="margin: auto; width: 100%; border-collapse: collapse; font-size: large;">
+        <!-- Title bar: peach background, title spans the 3 left columns -->
+        <tr>
+            <th colspan="3" style="border: 1px solid; background: #f2c9a9; padding: 8px 12px;"><h1>Part 2: Game</h1></th>
+        </tr>
+        <!-- Name row: peach background, label + required text box -->
+        <tr>
+            <td colspan="3" style="border: 1px solid; background: #f2c9a9; padding: 8px 12px;">
+                <label for="playerName"><b>Name:</b></label>
+                <input type="text" id="playerName" name="playerName">
+            </td>
+        </tr>
+        <!-- Chosen character (blue) + list box (blue) + current score (yellow) -->
+        <tr>
+            <td style="border: 1px solid; background: #dce6f1; padding: 8px 12px;">
+                <label for="chosenChar"><b>Your chosen character:</b></label>
+            </td>
+            <td style="border: 1px solid; background: #dce6f1; padding: 8px 12px; text-align: center;">
+                <select id="chosenChar" name="chosenChar" size="1">
+                    <option value="B">B</option>
+                    <option value="G">G</option>
+                    <option value="$">$</option>
+                    <option value="#">#</option>
+                    <option value="7">7</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td style="border: 1px solid; background: #fdf2cc; padding: 8px 12px; text-align: center;">
+                <b>Current Score: <span id="currentScore" style="color: red;">0</span></b>
+            </td>
+        </tr>
+        <!-- Controls: green row with Start / Stop buttons -->
+        <tr>
+            <td colspan="3" style="border: 1px solid; background: #92e07f; padding: 8px 12px; text-align: center;">
+                <button type="button" id="startBtn">Start Game</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" id="stopBtn">Stop Game</button>
+            </td>
+        </tr>
+        <!-- Three random characters: one per cell, each its own colour.
+             cursor: pointer hints that the cells are clickable targets. -->
+        <tr>
+            <td style="border: 1px solid; padding: 24px 12px; text-align: center; font-size: xx-large; color: #c8860d; cursor: pointer;" id="char1"></td>
+            <td style="border: 1px solid; padding: 24px 12px; text-align: center; font-size: xx-large; color: #1414ff; cursor: pointer;" id="char2"></td>
+            <td style="border: 1px solid; padding: 24px 12px; text-align: center; font-size: xx-large; color: #548235; cursor: pointer;" id="char3"></td>
+        </tr>
+        <!-- Bottom row: "Player (Score)" label + player list (filled by JS on Stop) -->
+        <tr>
+            <td style="border: 1px solid; padding: 8px 12px; text-align: center;">Player (Score)</td>
+            <td colspan="2" style="border: 1px solid; padding: 8px 12px;">
+                <ul id="highest" style="margin: 0;"></ul>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Part 2 game logic (external, relative link) -->
+    <script src="js/game.js"></script>
+</body>
+</html>

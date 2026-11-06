@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================
+     S2.xsd  =  XML Schema Definition for S2.xml
+     ============================================================
+     DEMO NOTES (be ready to explain):
+     * An XSD describes the STRUCTURE and the allowed VALUES of an
+       XML document. It answers: what elements are allowed, in what
+       order, how many times, and what each one may contain.
+     * "xmlns:xs=...XMLSchema" binds the prefix "xs" to the W3C
+       schema namespace. That is why every schema keyword is written
+       as xs:element, xs:complexType, etc.
+     * Two kinds of types:
+         - simpleType  = an element with ONLY text and no children
+                         (we use these to RESTRICT values).
+         - complexType = an element that contains child elements
+                         and/or attributes.
+     * A "restriction" takes a base type (e.g. xs:integer) and narrows
+       what it accepts. This is exactly how the assignment's value
+       ranges are enforced - the schema, not the HTML, is the gate.
+     ============================================================ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- ===== Restricted simple types =====
+         Each one enforces ONE of the ranges the brief requires. -->
+
+    <!-- <year>: any whole number from 2000 to 2030.
+         base=xs:integer forces a whole number; min/maxInclusive make
+         the endpoints (2000 and 2030) themselves valid. -->
+    <xs:simpleType name="yearType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="2000"/>
+            <xs:maxInclusive value="2030"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- <month>: 1 to 12. Anything outside (0, 13, "May") is rejected. -->
+    <xs:simpleType name="monthType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- <date>: 1 to 31. (Day-of-month number, not a full date.) -->
+    <xs:simpleType name="dateType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="31"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- <dayOfWeek>: must be exactly one of these seven strings.
+         "enumeration" = a fixed whitelist; any other text fails.
+         base=xs:string because these are text labels, not numbers. -->
+    <xs:simpleType name="dayOfWeekType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Mon"/>
+            <xs:enumeration value="Tue"/>
+            <xs:enumeration value="Wed"/>
+            <xs:enumeration value="Thu"/>
+            <xs:enumeration value="Fri"/>
+            <xs:enumeration value="Sat"/>
+            <xs:enumeration value="Sun"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ===== Complex type: one weather record ===== -->
+
+    <!-- <xs:sequence> means these children must appear IN THIS ORDER
+         and all of them must be present (default minOccurs is 1).
+         The restricted types above are reused here by name, so each
+         child is validated against its own rule. overall/overallCode
+         are plain strings (free text); highest/lowest are integers. -->
+    <xs:complexType name="weatherType">
+        <xs:sequence>
+            <xs:element name="year"        type="yearType"/>
+            <xs:element name="month"       type="monthType"/>
+            <xs:element name="date"        type="dateType"/>
+            <xs:element name="dayOfWeek"   type="dayOfWeekType"/>
+            <xs:element name="overall"     type="xs:string"/>
+            <xs:element name="overallCode" type="xs:string"/>
+            <xs:element name="highest"     type="xs:integer"/>
+            <xs:element name="lowest"      type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ===== Root element: <forecast> =====
+         Declared inline because it is the single entry point.
+         - contains zero or more <weather> children
+           (minOccurs=0, maxOccurs=unbounded = "any amount, list may be empty")
+         - carries the queryTime attribute, which is REQUIRED
+           (use="required" means a <forecast> without it is invalid). -->
+    <xs:element name="forecast">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="weather" type="weatherType"
+                            minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="queryTime" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
